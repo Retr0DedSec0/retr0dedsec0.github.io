@@ -153,15 +153,5 @@ Aumentar tempos limite não ajuda, e não altere os tamanhos de spray nem o núm
 - A rota 11.00 a 12.02 e 12.50 a 13.00 é de pesquisa e não garante estabilidade. As versões 12.03 a 12.49 não têm bug funcional na origem.
 - Nenhum host garante o mesmo resultado em todo console, versão do navegador, estado de cache ou rede.
 
-## Créditos
 
-Este host é baseado no projeto **PlayStation Pulse**, de BlackArch. Os exploits, payloads e a estrutura técnica são do projeto original.
-
-| Função | Quem |
-|---|---|
-| Autor original | [BlackArch](https://t.me/sudoBlackArch) |
-| Comunidade | [PlayStation Pulse](https://t.me/PlayStation_Pulse) |
-| Servidores de jogos | [NodePlay](https://nodeplay.net/) |
-| Personalização visual e manutenção desta versão | Retr0 (Davi Moreno) |
-
-> Para qualquer uso dos materiais ou arquivos, os links do autor [BlackArch](https://t.me/sudoBlackArch) e do grupo [PlayStation Pulse](https://t.me/PlayStation_Pulse) no Telegram devem permanecer em todas as páginas.
+| Personalização visual e manutenção| Desenvolvimento Retr0 (Davi Moreno) 
