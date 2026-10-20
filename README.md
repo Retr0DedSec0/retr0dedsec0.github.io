@@ -11,6 +11,16 @@
 
 Esta é uma coleção de páginas estáticas para o navegador do PS4. Você abre uma página, escolhe o firmware do console e segue o fluxo certo de exploit e GoldHEN. Foi feita para rodar em hospedagem estática e funcionar offline depois do cache.
 
+## Acesso rápido
+
+No navegador do PS4, abra:
+
+```
+https://retr0dedsec0.github.io
+```
+
+Escolha o firmware do seu console, siga as instruções da página e, se quiser, salve o endereço nos favoritos para abrir com um toque.
+
 ## Índice
 
 - [Firmwares suportados](#firmwares-suportados)
@@ -105,11 +115,11 @@ Os arquivos de cache são gerados. Sempre que mudar um HTML, JavaScript, binári
 
 A página inicial tem a cara do Retr0: estilo DedSec retrô, feito para ser lido de longe, na TV, e para o WebKit antigo do PS4.
 
-- **Cores:** fundo roxo-escuro `#0f0d16`, painel `#181526`, texto `#efece6`, rosa `#ff2e88` e ciano `#36e2ff`. As duas últimas formam o efeito de glitch.
-- **Identidade:** caveira em pixel feita em SVG e título em fonte monoespaçada com desvio de cor estático. Linhas de varredura de CRT no fundo.
+- **Cores:** fundo quase preto `#08080b`, painel `#131217`, texto `#f1eee8`, rosa `#ff2e88` e ciano `#36e2ff`. As duas últimas formam o efeito de glitch.
+- **Identidade:** barra de terminal com cursor piscando, linhas de boot, caveira em pixel fatiada em faixas deslocadas (SVG) e o nome Retr0DedSec0 escrito em hexadecimal no rodapé. Linhas de varredura de CRT no fundo.
 - **Estrutura:** uma rota em destaque, que é o firmware do dono do host (13.02 a 13.52), e uma lista com as demais.
 - **Controle em primeiro lugar:** todo item interativo é um elemento focável de verdade, com anel de foco ciano. O foco inicial vai para a rota principal.
-- **Leve:** sem frameworks, fontes externas, transições, animações ou `backdrop-filter`. O glitch é só `text-shadow`, e as linhas de CRT são um gradiente fixo.
+- **Leve:** sem frameworks, fontes externas, transições, animações ou `backdrop-filter`. O glitch é só `text-shadow` e faixas deslocadas no SVG, as linhas de CRT são um gradiente fixo, e o único movimento é o cursor do terminal.
 
 As páginas internas de cada firmware mantêm o visual original do projeto.
 
