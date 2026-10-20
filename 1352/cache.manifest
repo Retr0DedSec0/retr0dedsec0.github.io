@@ -1,21 +1,26 @@
 CACHE MANIFEST
-# v4 - startup, AppCache and telemetry reliability 20261003
+# v16 - retr0dedsec0 visual update - 20261020
 
 CACHE:
 index.html
-jb.html
-cache.html
+run_lapse.html
+run_poops.html
 ../pspulse.png
-jb.js
+chain_lapse.js
+chain_poops.js
 core.js
 mem.js
 int64.js
-rpc_worker.js
 ps4_offsets.js
-goldhen.bin
-patches/1302.bin
-patches/1350.bin
-patches/1352.bin
+rpc_worker.js
+payload.bin
+patches/1100.bin
+patches/1150.bin
+patches/1152.bin
+patches/1200.bin
+patches/1250.bin
+patches/1300.bin
+core.js?v=10
 
 NETWORK:
 *
