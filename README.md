@@ -6,9 +6,6 @@
 ![Firmware](https://img.shields.io/badge/firmware-5.05%20a%2013.52-1f2124?style=flat-square)
 ![Modo](https://img.shields.io/badge/modo-offline-1f2124?style=flat-square)
 
-> [!NOTE]
-> Projeto para fins educacionais, de preservação e pesquisa. Use por sua conta e risco. Não tem relação com a Sony Interactive Entertainment.
-
 Esta é uma coleção de páginas estáticas para o navegador do PS4. Você abre uma página, escolhe o firmware do console e segue o fluxo certo de exploit e GoldHEN. Foi feita para rodar em hospedagem estática e funcionar offline depois do cache.
 
 ## Acesso rápido
