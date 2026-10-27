@@ -3,165 +3,159 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Retr0DedSec0 // PS4 13.02-13.52 HOST / GOLDHEN</title>
+<title>Retr0DedSec0 // PS4 13.02-13.52 / GOLDHEN</title>
 <link rel="icon" type="image/png" href="../pspulse.png">
 <style>
-    :root {
-        --bg: #08080b;
-        --panel: #131217;
-        --panel-2: #1a1822;
-        --line: #2a2833;
-        --line-bright: #454258;
-        --text: #f1eee8;
-        --muted: #a8a4b3;
-        --dim: #8a8696;
-        --hot: #ff2e88;
-        --ice: #36e2ff;
-        --red: #ff9b9b;
-        --amber: #e1bd72;
-    }
+:root {
+  --bg:    #090c12;
+  --panel: #0d1118;
+  --line:  #1a2030;
+  --hi:    #1e2840;
+  --text:  #e4eaf5;
+  --muted: #7a8aaa;
+  --dim:   #4a566e;
+  --blue:  #00c8ff;
+  --pink:  #ff2d6e;
+  --red:   #ff9b9b;
+  --amber: #e1bd72;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{background:var(--bg);}
+html,body{min-height:100%;}
+body{
+  background-image:
+    linear-gradient(rgba(0,200,255,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,200,255,.04) 1px,transparent 1px);
+  background-size:40px 40px;
+  color:var(--text);
+  display:flex;
+  flex-direction:column;
+  font:17px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+a{color:inherit;}
+.mono{font-family:Consolas,"Liberation Mono",monospace;}
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { background: var(--bg); }
-    html, body { min-height: 100%; }
-    body {
-        background-image: repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0, rgba(255,255,255,.035) 1px, transparent 1px, transparent 4px);
-        color: var(--text);
-        display: flex;
-        flex-direction: column;
-        font: 17px/1.4 Consolas, "Liberation Mono", monospace;
-        min-height: 100vh;
-        overflow-x: hidden;
-    }
-    a { color: inherit; }
+.app{display:flex;flex:1 0 auto;flex-direction:column;margin:0 auto;padding:16px 26px 16px;width:min(100% - 52px,1220px);}
 
-    .app { display: flex; flex: 1 0 auto; flex-direction: column; margin: 0 auto; padding: 14px 26px 12px; width: min(100% - 52px, 1220px); }
+.bar{
+  align-items:center;
+  border:1px solid var(--line);
+  display:flex;
+  font-size:13px;
+  font-family:Consolas,monospace;
+  justify-content:space-between;
+  letter-spacing:.1em;
+  padding:10px 16px;
+  text-transform:uppercase;
+}
+.bar b{color:var(--blue);font-weight:400;}
+.bar-fw{color:var(--dim);}
+.bar-fw::before{color:var(--blue);content:"\25CF ";}
 
-    /* Top status bar */
-    .bar {
-        align-items: center;
-        border: 1px solid var(--line-bright);
-        display: flex;
-        font-size: 14px;
-        justify-content: space-between;
-        letter-spacing: .1em;
-        padding: 10px 16px;
-        text-transform: uppercase;
-    }
-    .bar b { color: var(--ice); font-weight: 400; }
-    .bar-fw { color: var(--dim); }
-    .bar-fw::before { color: var(--hot); content: "\25CF "; }
+.layout{display:flex;flex:1 0 auto;flex-direction:column;padding:24px 0 0;}
 
-    .layout { display: flex; flex: 1 0 auto; flex-direction: column; padding: 20px 0 0; }
+.kicker{color:var(--blue);font-family:Consolas,monospace;font-size:13px;letter-spacing:.1em;margin:0 0 14px;}
+h1{font-size:clamp(30px,5vw,52px);font-weight:700;letter-spacing:-.025em;line-height:1.05;margin:0;}
+h1 em{color:var(--blue);font-style:normal;}
+.sub{color:var(--muted);font-size:16px;margin:12px 0 0;max-width:680px;}
+.boot{color:var(--dim);font-family:Consolas,monospace;font-size:14px;list-style:none;margin:14px 0 0;}
+.boot li{margin:3px 0;}
+.boot b{color:var(--blue);font-weight:400;}
 
-    /* Header */
-    .kicker { color: var(--ice); font-size: 14px; letter-spacing: .14em; margin: 0 0 12px; }
-    h1 {
-        font-size: clamp(34px, 5vw, 56px);
-        font-weight: 700;
-        letter-spacing: -.03em;
-        line-height: 1.05;
-        margin: 0;
-        text-shadow: 2px 0 var(--hot), -2px 0 var(--ice);
-    }
-    h1 em { color: var(--hot); font-style: normal; text-shadow: none; }
-    .sub { color: var(--muted); font-size: 17px; margin: 13px 0 0; max-width: 720px; }
-    .boot { color: var(--dim); font-size: 14px; list-style: none; margin: 14px 0 0; }
-    .boot li { margin: 3px 0; }
-    .boot b { color: var(--hot); font-weight: 400; }
+/* status panel */
+.status{
+  border:1px solid var(--line);
+  border-left:3px solid var(--blue);
+  background:var(--panel);
+  margin-top:24px;
+  padding:18px 20px;
+}
+#state{color:var(--blue);font-size:20px;font-family:Consolas,monospace;font-weight:400;line-height:1.25;margin:0 0 10px;}
+#det{color:var(--muted);font-family:Consolas,monospace;font-size:14px;margin:0 0 6px;}
+#det b{color:var(--text);font-weight:400;}
+#cache{color:var(--dim);font-family:Consolas,monospace;font-size:13px;margin:0 0 4px;min-height:16px;}
+#cache.cacheok{color:var(--blue);}
+.ok{color:var(--blue);}
+.bad{color:var(--red);}
+.warn{color:var(--amber);}
 
-    /* Router status */
-    .status {
-        background: var(--panel);
-        border: 2px solid var(--text);
-        box-shadow: 6px 6px 0 var(--hot);
-        margin-top: 24px;
-        padding: 16px 18px;
-    }
-    #state { color: var(--ice); font-size: 22px; font-weight: 400; line-height: 1.25; margin: 0 0 10px; }
-    #det { color: var(--muted); font-size: 14px; margin: 0 0 6px; }
-    #det b { color: var(--text); font-weight: 400; }
-    #cache { color: var(--dim); font-size: 13px; margin: 0 0 10px; min-height: 16px; }
-    #cache.cacheok { color: var(--ice); }
-    .ok { color: var(--ice); }
-    .bad { color: var(--red); }
-    .warn { color: var(--amber); }
+/* nodeplay */
+.nodeplay{
+  align-items:center;
+  background:var(--panel);
+  border:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  margin-top:14px;
+  min-height:64px;
+  padding:10px 18px;
+  text-decoration:none;
+}
+.nodeplay:hover,.nodeplay:focus{background:var(--hi);border-color:var(--blue);outline:0;}
+.nodeplay:focus{box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--blue);}
+.np-label{color:var(--dim);display:block;font-size:12px;font-family:Consolas,monospace;letter-spacing:.1em;text-transform:uppercase;}
+.np-name{color:var(--text);display:block;font-size:22px;font-weight:600;margin-top:2px;}
+.np-name b{color:var(--blue);font-weight:600;}
+.np-open{color:var(--blue);font-size:13px;font-family:Consolas,monospace;}
 
-    /* NodePlay */
-    .nodeplay {
-        align-items: center;
-        background: var(--panel);
-        border: 1px solid var(--line-bright);
-        display: flex;
-        justify-content: space-between;
-        margin-top: 14px;
-        min-height: 68px;
-        padding: 10px 18px;
-        text-decoration: none;
-    }
-    .nodeplay:hover, .nodeplay:focus { background: var(--panel-2); border-color: var(--ice); outline: 0; }
-    .nodeplay:focus { box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--ice); }
-    .np-label { color: var(--dim); display: block; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
-    .np-name { color: var(--text); display: block; font-size: 24px; margin-top: 2px; }
-    .np-name b { color: var(--hot); font-weight: 400; }
-    .np-open { color: var(--ice); font-size: 14px; }
+.foot{
+  border-top:1px solid var(--line);
+  color:var(--dim);
+  font-family:Consolas,monospace;
+  font-size:13px;
+  margin-top:18px;
+  padding:12px 4px 2px;
+  text-align:center;
+}
+.foot a{color:var(--muted);}
+.foot a:hover,.foot a:focus{color:var(--blue);}
 
-    /* Footer */
-    .foot {
-        border-top: 1px dashed var(--line);
-        color: var(--dim);
-        font-size: 13px;
-        margin-top: 16px;
-        padding: 12px 4px 2px;
-        text-align: center;
-    }
-    .foot a { color: var(--muted); }
-    .foot a:hover, .foot a:focus { color: var(--ice); }
-
-    @media (max-width: 760px) {
-        body { overflow: auto; }
-        .app { padding: 8px 10px; width: min(100% - 20px, 560px); }
-        .bar { font-size: 12px; padding: 8px 12px; }
-        .layout { padding-top: 14px; }
-        h1 { font-size: 30px; }
-        .sub { font-size: 16px; }
-        #state { font-size: 19px; }
-    }
+@media(max-width:760px){
+  body{overflow:auto;}
+  .app{padding:8px 10px;width:min(100% - 20px,560px);}
+  .bar{font-size:11px;padding:8px 12px;}
+  .layout{padding-top:14px;}
+  h1{font-size:28px;}
+  .sub{font-size:15px;}
+  #state{font-size:17px;}
+}
 </style>
 </head>
 <body>
-    <div class="app">
-        <header class="bar">
-            <span><b>RETR0DEDSEC0</b> // ps4 host</span>
-            <span class="bar-fw">fw 13.02-13.52 ready</span>
-        </header>
+<div class="app">
+  <header class="bar">
+    <span><b>RETR0DEDSEC0</b> // ps4 host</span>
+    <span class="bar-fw">fw 13.02-13.52 ready</span>
+  </header>
 
-        <main class="layout">
-            <p class="kicker">retr0@dedsec:~$ ./launch --slopkit relapse</p>
-            <h1>SlopKit <em>13.02-13.52</em> host</h1>
-            <p class="sub">Host de WebKit, base técnica do PlayStation Pulse.</p>
-            <ul class="boot">
-                <li>[ <b>ok</b> ] slopkit chain ready</li>
-                <li>[ <b>ok</b> ] goldhen v2.4b18.12 staged</li>
-                <li>[ <b>ok</b> ] offline cache ready</li>
-            </ul>
+  <main class="layout">
+    <p class="kicker mono">retr0@dedsec:~$ ./launch --slopkit relapse</p>
+    <h1>SlopKit <em>13.02–13.52</em> host</h1>
+    <p class="sub">Host de WebKit, base técnica do PlayStation Pulse.</p>
+    <ul class="boot mono">
+      <li>[ <b>ok</b> ] slopkit chain ready</li>
+      <li>[ <b>ok</b> ] goldhen v2.4b18.12 staged</li>
+      <li>[ <b>ok</b> ] offline cache ready</li>
+    </ul>
 
-            <section class="status" id="wrap">
-                <div id="state">detecting firmware...</div>
-                <div id="det"></div>
-                <div id="cache"></div>
-            </section>
+    <section class="status" id="wrap">
+      <div id="state">detecting firmware...</div>
+      <div id="det"></div>
+      <div id="cache"></div>
+    </section>
 
-            <a class="nodeplay" href="https://nodeplay.net/" target="_blank" rel="noopener">
-                <span><span class="np-label">Premium game servers</span><span class="np-name">Node<b>Play</b></span></span>
-                <span class="np-open">OPEN &#8599;</span>
-            </a>
+    <a class="nodeplay" href="https://nodeplay.net/" target="_blank" rel="noopener">
+      <span><span class="np-label">Premium game servers</span><span class="np-name">Node<b>Play</b></span></span>
+      <span class="np-open">OPEN ↗</span>
+    </a>
 
-            <footer class="foot">
-                Visual: Retr0 (Davi Moreno) // Base técnica: <a href="https://t.me/sudoBlackArch">BlackArch</a> // Telegram: <a href="https://t.me/PlayStation_Pulse">PlayStation Pulse</a>
-            </footer>
-        </main>
-    </div>
+    <footer class="foot">
+      Visual: Retr0 (Davi Moreno) · Base técnica: <a href="https://t.me/sudoBlackArch">BlackArch</a> · Telegram: <a href="https://t.me/PlayStation_Pulse">PlayStation Pulse</a>
+    </footer>
+  </main>
+</div>
 
 <script>
 (function () {
@@ -225,10 +219,8 @@
     function go() {
         if (launched) return;
         launched = true;
-
         if (sessionGet(preflightKey) !== "yes") {
             if (!sessionSet(preflightKey, "yes")) {
-                setState("SESSION STORAGE UNAVAILABLE — press X to continue", "warn");
                 waitForTap("SESSION STORAGE UNAVAILABLE — press X to continue", function () {
                     location.replace(target);
                 });
@@ -238,7 +230,6 @@
             setTimeout(function () { location.reload(); }, 750);
             return;
         }
-
         setState("loading jailbreak...", "warn");
         location.replace(target);
     }
@@ -279,18 +270,13 @@
     function finishCache() {
         if (cacheFinished) return false;
         cacheFinished = true;
-        if (cacheWatchdog !== null) {
-            clearTimeout(cacheWatchdog);
-            cacheWatchdog = null;
-        }
+        if (cacheWatchdog !== null) { clearTimeout(cacheWatchdog); cacheWatchdog = null; }
         return true;
     }
 
     function reloadWithFreshCache(swap) {
         if (!finishCache()) return;
-        if (swap) {
-            try { applicationCache.swapCache(); } catch (error) {}
-        }
+        if (swap) { try { applicationCache.swapCache(); } catch (error) {} }
         sessionSet(preflightKey, "yes");
         if (sessionGet(cacheReloadKey) === "yes") {
             sessionRemove(cacheReloadKey);
@@ -309,19 +295,13 @@
         return;
     }
 
-    ac.addEventListener("downloading", function () {
-        setCache("caching for offline use...");
-    }, false);
+    ac.addEventListener("downloading", function () { setCache("caching for offline use..."); }, false);
     ac.addEventListener("progress", function (event) {
         if (event && event.total > 0)
             setCache("caching " + Math.round(event.loaded / event.total * 100) + "%");
     }, false);
-    ac.addEventListener("cached", function () {
-        reloadWithFreshCache(false);
-    }, false);
-    ac.addEventListener("updateready", function () {
-        reloadWithFreshCache(true);
-    }, false);
+    ac.addEventListener("cached", function () { reloadWithFreshCache(false); }, false);
+    ac.addEventListener("updateready", function () { reloadWithFreshCache(true); }, false);
     ac.addEventListener("noupdate", function () {
         if (!finishCache()) return;
         sessionRemove(cacheReloadKey);
@@ -347,8 +327,7 @@
         go();
     } else if (ac.status === ac.UPDATEREADY) {
         reloadWithFreshCache(true);
-    } else if (ac.status === ac.CHECKING || ac.status === ac.DOWNLOADING ||
-               ac.status === ac.UNCACHED) {
+    } else if (ac.status === ac.CHECKING || ac.status === ac.DOWNLOADING || ac.status === ac.UNCACHED) {
         setCache("waiting for offline cache...");
         cacheWatchdog = setTimeout(function () {
             if (!finishCache()) return;
@@ -368,10 +347,9 @@
 }());
 </script>
 
-<!-- PSPulse support link: intentionally lightweight for the PS4 browser. -->
 <style id="pspulse-support-style">
-.pspulse-support{position:fixed;right:18px;bottom:18px;z-index:2147483647;display:block;padding:10px 15px;border:1px solid #ff2e88;border-radius:4px;background:#131217;color:#36e2ff!important;font:600 13px Arial,sans-serif;letter-spacing:.2px;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.32)}
-.pspulse-support:hover,.pspulse-support:focus{background:#ff2e88;color:#08080b!important;outline:none}
+.pspulse-support{position:fixed;right:18px;bottom:18px;z-index:2147483647;display:block;padding:10px 15px;border:1px solid #00c8ff;border-radius:2px;background:#0d1118;color:#00c8ff!important;font:600 13px Consolas,monospace;letter-spacing:.1em;text-decoration:none;text-transform:uppercase;}
+.pspulse-support:hover,.pspulse-support:focus{background:#00c8ff;color:#090c12!important;outline:none;}
 </style>
 <a class="pspulse-support" href="https://sudoblackarch.github.io/support/" aria-label="Support me">Support me!</a>
 </body>
