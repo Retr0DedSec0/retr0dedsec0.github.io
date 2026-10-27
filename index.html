@@ -4,183 +4,222 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="pspulse.png">
-<title>Retr0DedSec0 // PS4</title>
+<title>Retr0DedSec0 // PS4 HOST</title>
 <style>
-/* Sem animação CSS, transição ou blur: o navegador do PS4 é antigo. */
 :root {
-  --bg: #08080b;
-  --panel: #131217;
-  --line: #2a2833;
-  --text: #f1eee8;
-  --muted: #a8a4b3;
-  --dim: #8a8696;
-  --hot: #ff2e88;
-  --ice: #36e2ff;
+  --bg:     #090c12;
+  --panel:  #0d1118;
+  --line:   #1a2030;
+  --hi:     #1e2840;
+  --text:   #e4eaf5;
+  --muted:  #7a8aaa;
+  --dim:    #4a566e;
+  --blue:   #00c8ff;
+  --pink:   #ff2d6e;
+  --warn:   #e1bd72;
 }
-* { box-sizing: border-box; }
-html, body { margin: 0; min-height: 100%; background: var(--bg); }
-body {
-  background-image: repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0, rgba(255,255,255,.035) 1px, transparent 1px, transparent 4px);
-  color: var(--text);
-  font: 18px/1.5 "Courier New", Courier, monospace;
+*{box-sizing:border-box;}
+html,body{margin:0;min-height:100%;background:var(--bg);}
+body{
+  color:var(--text);
+  font:17px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background-image:
+    linear-gradient(rgba(0,200,255,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,200,255,.04) 1px,transparent 1px);
+  background-size:40px 40px;
 }
-a { color: inherit; text-decoration: none; }
+a{color:inherit;text-decoration:none;}
+.mono{font-family:Consolas,"Liberation Mono",monospace;}
 
-.page { margin: 0 auto; max-width: 780px; padding: 20px 28px 40px; }
+.page{margin:0 auto;max-width:800px;padding:28px 28px 44px;}
 
-/* Barra de terminal */
-.term {
-  border: 1px solid var(--line);
-  color: var(--muted);
-  display: flex;
-  font-size: 14px;
-  justify-content: space-between;
-  padding: 9px 14px;
+/* ── top bar ── */
+.topbar{
+  align-items:center;
+  border:1px solid var(--line);
+  display:flex;
+  font-size:13px;
+  justify-content:space-between;
+  letter-spacing:.1em;
+  margin-bottom:40px;
+  padding:10px 14px;
+  text-transform:uppercase;
 }
-.term b { color: var(--ice); font-weight: 400; }
-.term .on { color: var(--hot); }
-#cur { color: var(--text); }
+.topbar .brand{color:var(--blue);}
+.topbar .status{color:var(--dim);}
+.topbar .status span{color:var(--blue);}
 
-.skull-wrap { margin: 40px 0 20px; }
-.skull { display: block; height: 90px; width: 124px; }
-
-h1 {
-  font-size: 48px;
-  font-weight: 700;
-  letter-spacing: -.03em;
-  line-height: 1.05;
-  margin: 0;
-  text-shadow: 3px 0 var(--hot), -3px 0 var(--ice);
-  word-wrap: break-word;
+/* ── bracket title ── */
+.bracket-wrap{display:flex;align-items:flex-start;gap:14px;margin-bottom:8px;}
+.bracket{color:var(--blue);font-family:Consolas,monospace;font-size:64px;font-weight:300;line-height:.9;margin-top:6px;user-select:none;}
+h1{
+  font-size:44px;
+  font-weight:700;
+  letter-spacing:-.025em;
+  line-height:1.05;
+  margin:0;
 }
+.tag{color:var(--muted);font-size:15px;margin:8px 0 0;}
+.tag b{color:var(--text);font-weight:400;}
 
-.boot { color: var(--muted); font-size: 15px; list-style: none; margin: 18px 0 0; padding: 0; }
-.boot li { margin: 3px 0; }
-.boot i { color: var(--hot); font-style: normal; }
-
-.main {
-  background: var(--panel);
-  border: 2px solid var(--text);
-  box-shadow: 6px 6px 0 var(--hot);
-  display: block;
-  margin-top: 40px;
-  padding: 22px 26px 24px;
+/* ── stat row ── */
+.stats{
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  display:flex;
+  gap:0;
+  margin:28px 0;
 }
-.main .who { color: var(--ice); display: block; font-size: 15px; }
-.main .name { display: block; font-size: 30px; line-height: 1.2; margin-top: 4px; }
-.main .meta { color: var(--muted); display: block; font-size: 16px; margin-top: 6px; }
+.stat{flex:1;padding:14px 16px;border-right:1px solid var(--line);}
+.stat:last-child{border-right:0;}
+.stat-label{color:var(--dim);font-size:12px;letter-spacing:.1em;text-transform:uppercase;}
+.stat-val{color:var(--blue);font-size:18px;font-family:Consolas,monospace;margin-top:4px;}
 
-.others-title { color: var(--dim); font-size: 15px; margin: 44px 0 10px; }
-.others { margin: 0; padding: 0; list-style: none; }
-.row {
-  align-items: baseline;
-  border-top: 1px dashed var(--line);
-  display: flex;
-  justify-content: space-between;
-  padding: 16px 10px;
+/* ── main route ── */
+.main-route{
+  border:1px solid var(--blue);
+  display:block;
+  padding:0;
+  position:relative;
 }
-.others li:last-child .row { border-bottom: 1px dashed var(--line); }
-.row .name { font-size: 20px; }
-.row .name i { color: var(--dim); font-style: normal; margin-right: 10px; }
-.row .meta { color: var(--dim); font-size: 14px; margin-left: 20px; text-align: right; }
+.main-route::before,.main-route::after{
+  color:var(--blue);
+  content:"▶";
+  font-size:10px;
+  position:absolute;
+  right:16px;
+  top:50%;
+  transform:translateY(-50%);
+}
+.main-route::after{right:8px;opacity:.4;}
+.route-inner{padding:20px 48px 20px 20px;}
+.route-badge{
+  background:var(--blue);
+  color:var(--bg);
+  display:inline-block;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.12em;
+  padding:3px 8px;
+  text-transform:uppercase;
+  margin-bottom:10px;
+}
+.route-name{font-size:26px;font-weight:600;letter-spacing:-.02em;line-height:1.2;}
+.route-meta{color:var(--muted);font-size:14px;margin-top:6px;font-family:Consolas,monospace;}
 
-.main:hover, .main:focus, .row:hover, .row:focus { outline: 0; }
-.main:hover, .main:focus { border-color: var(--ice); }
-.row:hover, .row:focus { background: var(--panel); }
-.row:hover .name i, .row:focus .name i { color: var(--hot); }
-.main:focus { box-shadow: 0 0 0 2px var(--bg), 0 0 0 5px var(--ice), 6px 6px 0 var(--hot); }
-.row:focus { box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--ice); }
+/* ── other routes ── */
+.section-label{
+  color:var(--dim);
+  font-size:12px;
+  letter-spacing:.12em;
+  margin:32px 0 0;
+  padding-bottom:10px;
+  border-bottom:1px solid var(--line);
+  text-transform:uppercase;
+}
+.routes{margin:0;padding:0;list-style:none;}
+.row{
+  align-items:center;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  padding:14px 12px;
+}
+.row-left{display:flex;align-items:center;gap:14px;}
+.row-num{color:var(--dim);font-family:Consolas,monospace;font-size:13px;min-width:24px;}
+.row-name{font-size:18px;font-weight:500;}
+.row-meta{color:var(--dim);font-size:13px;font-family:Consolas,monospace;}
 
-.hex { color: var(--line); font-size: 13px; margin: 48px 0 0; word-wrap: break-word; }
-.hex b { color: var(--hot); font-weight: 400; }
-.foot { color: var(--dim); font-size: 14px; margin-top: 14px; }
-.foot p { margin: 0 0 8px; }
-.foot a { color: var(--muted); margin-right: 16px; text-decoration: underline; }
-.foot a:hover, .foot a:focus { color: var(--ice); outline: 0; }
+/* focus / hover */
+.main-route:hover,.main-route:focus{border-color:var(--blue);background:rgba(0,200,255,.04);outline:0;}
+.main-route:focus{box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--blue);}
+.row:hover,.row:focus{background:var(--panel);outline:0;}
+.row:hover .row-name,.row:focus .row-name{color:var(--blue);}
+.row:focus{box-shadow:inset 0 0 0 1px var(--blue);}
 
-@media (max-width: 600px) {
-  .page { padding: 12px 14px 28px; }
-  .term span:last-child { display: none; }
-  h1 { font-size: 32px; }
-  .main { padding: 18px 18px 20px; }
-  .main .name { font-size: 24px; }
-  .row { display: block; }
-  .row .meta { display: block; margin: 4px 0 0 28px; text-align: left; }
+/* ── footer ── */
+.foot{
+  border-top:1px solid var(--line);
+  color:var(--dim);
+  font-size:13px;
+  font-family:Consolas,monospace;
+  margin-top:44px;
+  padding-top:18px;
+}
+.foot a{color:var(--muted);}
+.foot a:hover,.foot a:focus{color:var(--blue);outline:0;}
+.foot-grid{display:flex;gap:24px;flex-wrap:wrap;margin-top:8px;}
+
+@media(max-width:600px){
+  .page{padding:16px 14px 32px;}
+  .topbar{font-size:11px;}
+  h1{font-size:30px;}
+  .bracket{font-size:44px;}
+  .stats{flex-wrap:wrap;}
+  .stat{flex:1 1 45%;border-right:0;border-bottom:1px solid var(--line);}
+  .row{display:block;}
+  .row-meta{margin-top:4px;}
+  .foot-grid{gap:12px;}
 }
 </style>
 </head>
 <body>
 <div class="page">
 
-  <div class="term">
-    <span><b>retr0@dedsec</b>:~$ ./host --ps4<span id="cur">&#9608;</span></span>
-    <span><span class="on">&#9679;</span> online</span>
+  <div class="topbar mono">
+    <span class="brand">RETR0DEDSEC0 // PS4</span>
+    <span class="status">SYS <span>ONLINE</span></span>
   </div>
 
-  <div class="skull-wrap">
-    <!-- Caveira em pixel, fatiada em faixas deslocadas (glitch estático) -->
-    <svg class="skull" viewBox="-17 0 124 90" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" aria-label="Caveira em pixel com glitch">
-      <defs>
-        <g id="a"><rect x="20" y="0" width="50" height="10"/><rect x="10" y="10" width="70" height="10"/></g>
-        <g id="b"><rect x="0" y="20" width="90" height="10"/></g>
-        <g id="c"><rect x="0" y="30" width="20" height="20"/><rect x="40" y="30" width="10" height="20"/><rect x="70" y="30" width="20" height="20"/></g>
-        <g id="d"><rect x="0" y="50" width="40" height="10"/><rect x="50" y="50" width="40" height="10"/><rect x="10" y="60" width="70" height="10"/></g>
-        <g id="e"><rect x="20" y="70" width="10" height="10"/><rect x="40" y="70" width="10" height="10"/><rect x="60" y="70" width="10" height="10"/><rect x="20" y="80" width="50" height="10"/></g>
-        <g id="sk">
-          <use xlink:href="#a" x="0"/><use xlink:href="#b" x="10"/><use xlink:href="#c" x="-8"/><use xlink:href="#d" x="0"/><use xlink:href="#e" x="12"/>
-        </g>
-      </defs>
-      <use xlink:href="#sk" x="-5" fill="#ff2e88"/>
-      <use xlink:href="#sk" x="5" fill="#36e2ff"/>
-      <use xlink:href="#sk" x="0" fill="#f1eee8"/>
-    </svg>
+  <div class="bracket-wrap">
+    <span class="bracket mono">[</span>
+    <div>
+      <h1>Host do Retr0</h1>
+      <p class="tag">Escolha o firmware do seu PS4. <b>Cache offline disponível.</b></p>
+    </div>
+    <span class="bracket mono">]</span>
   </div>
 
-  <h1>Retr0DedSec0</h1>
-  <ul class="boot">
-    <li><i>&gt;</i> host do Retr0 carregado</li>
-    <li><i>&gt;</i> cache offline pronto</li>
-    <li><i>&gt;</i> escolha o firmware do seu PS4</li>
-  </ul>
+  <div class="stats mono">
+    <div class="stat"><div class="stat-label">Rotas</div><div class="stat-val">07</div></div>
+    <div class="stat"><div class="stat-label">GoldHEN</div><div class="stat-val">2.4b18.12</div></div>
+    <div class="stat"><div class="stat-label">Modo</div><div class="stat-val">offline</div></div>
+    <div class="stat"><div class="stat-label">Meu FW</div><div class="stat-val">13.02</div></div>
+  </div>
 
-  <a class="main" href="1352/index.html">
-    <span class="who">acesso rápido: meu PS4</span>
-    <span class="name">Firmware 13.02 a 13.52</span>
-    <span class="meta">GoldHEN 2.4b18.12, funciona offline</span>
+  <a class="main-route" href="1352/index.html">
+    <div class="route-inner">
+      <span class="route-badge mono">acesso rápido</span>
+      <div class="route-name">Firmware 13.02 a 13.52</div>
+      <div class="route-meta mono">SlopKit WebKit · GoldHEN 2.4b18.12 · offline</div>
+    </div>
   </a>
 
-  <p class="others-title">// outros firmwares</p>
-  <ul class="others">
-    <li><a class="row" href="1300/index.html"><span class="name"><i>&gt;</i>11.00 a 12.02 e 12.50 a 13.00</span><span class="meta">SlopKit WebKit</span></a></li>
-    <li><a class="row" href="css/version-selector.html"><span class="name"><i>&gt;</i>6.00 a 11.02</span><span class="meta">CSSFontFace</span></a></li>
-    <li><a class="row" href="900/version-selector.html"><span class="name"><i>&gt;</i>9.00 a 9.60</span><span class="meta">PSFree e Lapse</span></a></li>
-    <li><a class="row" href="700/version-selector.html"><span class="name"><i>&gt;</i>7.00 a 8.52</span><span class="meta">PSFree e Lapse</span></a></li>
-    <li><a class="row" href="672/index.html"><span class="name"><i>&gt;</i>6.72</span><span class="meta">Host dedicado</span></a></li>
-    <li><a class="row" href="505/index.html"><span class="name"><i>&gt;</i>5.05</span><span class="meta">Host dedicado</span></a></li>
+  <p class="section-label mono">// outras rotas</p>
+  <ul class="routes">
+    <li><a class="row" href="1300/index.html"><div class="row-left"><span class="row-num mono">02</span><span class="row-name">11.00 a 12.02 e 12.50 a 13.00</span></div><span class="row-meta">SlopKit</span></a></li>
+    <li><a class="row" href="css/version-selector.html"><div class="row-left"><span class="row-num mono">03</span><span class="row-name">6.00 a 11.02</span></div><span class="row-meta">CSSFontFace</span></a></li>
+    <li><a class="row" href="900/version-selector.html"><div class="row-left"><span class="row-num mono">04</span><span class="row-name">9.00 a 9.60</span></div><span class="row-meta">PSFree + Lapse</span></a></li>
+    <li><a class="row" href="700/version-selector.html"><div class="row-left"><span class="row-num mono">05</span><span class="row-name">7.00 a 8.52</span></div><span class="row-meta">PSFree + Lapse</span></a></li>
+    <li><a class="row" href="672/index.html"><div class="row-left"><span class="row-num mono">06</span><span class="row-name">6.72</span></div><span class="row-meta">Host dedicado</span></a></li>
+    <li><a class="row" href="505/index.html"><div class="row-left"><span class="row-num mono">07</span><span class="row-name">5.05</span></div><span class="row-meta">Host dedicado</span></a></li>
   </ul>
 
-  <p class="hex"><b>0x52 0x65 0x74 0x72 0x30</b> 0x44 0x65 0x64 0x53 0x65 0x63 0x30</p>
   <div class="foot">
-    <p>Visual por Retr0 (Davi Moreno). Base técnica do projeto original:</p>
-    <p>
+    <div>Visual: Retr0 (Davi Moreno) · Base técnica do projeto original</div>
+    <div class="foot-grid">
       <a href="https://t.me/sudoBlackArch">BlackArch</a>
       <a href="https://t.me/PlayStation_Pulse">PlayStation Pulse</a>
       <a href="https://nodeplay.net/" target="_blank" rel="noopener">NodePlay</a>
       <a href="https://sudoblackarch.github.io/support/">Apoie o autor</a>
-    </p>
+    </div>
   </div>
 
 </div>
-
 <script>
-(function () {
-  // Não captura as setas: o navegador do PS4 move o cursor sozinho.
-  // Foco inicial na rota principal para o cursor aparecer ao abrir.
-  var first = document.querySelector('.main');
-  if (first) first.focus();
-  // Cursor do terminal piscando (só alterna a cor, bem leve).
-  var cur = document.getElementById('cur'), on = true;
-  if (cur) setInterval(function () { on = !on; cur.style.visibility = on ? 'visible' : 'hidden'; }, 600);
+(function(){
+  var f=document.querySelector('.main-route');
+  if(f)f.focus();
 })();
 </script>
 </body>
