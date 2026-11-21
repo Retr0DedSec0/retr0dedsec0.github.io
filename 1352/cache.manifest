@@ -1,26 +1,27 @@
 CACHE MANIFEST
-# v17 - retr0dedsec0 ctos visual - 20261020
+# retr0-design-20261121-v1
+# resource-path-fix-20261021-main-v2
+# offline-manifests-v1-20261021
+# v4 - startup, AppCache and telemetry reliability 20261003
 
 CACHE:
+../retr0.css
 index.html
-run_lapse.html
-run_poops.html
+jb.html
+cache.html
 ../pspulse.png
-chain_lapse.js
-chain_poops.js
+jb.js
 core.js
 mem.js
 int64.js
-ps4_offsets.js
 rpc_worker.js
-payload.bin
-patches/1100.bin
-patches/1150.bin
-patches/1152.bin
-patches/1200.bin
-patches/1250.bin
-patches/1300.bin
-core.js?v=10
+ps4_offsets.js
+goldhen.bin
+patches/1302.bin
+patches/1350.bin
+patches/1352.bin
+
+jb.html?log=1
 
 NETWORK:
 *

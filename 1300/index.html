@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" manifest="cache.manifest">
+<html lang="pt-BR" manifest="cache.manifest">
 <head>
     <link rel="icon" type="image/png" href="../pspulse.png">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PSPULSE // PS4 11.00-13.00 HOST / 2.4B18.12</title>
+<title>Retr0 • PS4 11.00–13.00 | SlopKit</title>
 <style>
     :root {
         --bg: #151515;
@@ -124,18 +124,18 @@
         #state { font-size: 19px; }
     }
 </style>
-</head>
-<body>
+<link rel="stylesheet" href="../retr0.css"></head>
+<body class="subpage">
     <div class="app">
         <header class="bar">
-            <span><b>PSPULSE</b> // ps4 hosts</span>
+            <span><b>Retr0<span>_</span></b> // ps4 hosts</span>
             <span class="bar-fw">fw 11.00-13.00 ready</span>
         </header>
 
-        <main class="layout">
+        <main class="layout"><a class="back" href="../index.html">← Todos os firmwares</a>
             <p class="kicker">$ ./launch --slopkit</p>
             <h1>SlopKit <em>11.00-13.00</em> host</h1>
-            <p class="sub">WebKit research host by PlayStation Pulse.</p>
+            <p class="sub">Retr0 (Davi Moreno) · Base PlayStation Pulse / BlackArch.</p>
             <ul class="boot">
                 <li>[ <b>ok</b> ] webkit chain ready</li>
                 <li>[ <b>ok</b> ] offline cache ready</li>
@@ -153,7 +153,7 @@
             </a>
 
             <footer class="foot">
-                Author: <a href="https://t.me/sudoBlackArch">BlackArch</a> // Telegram: <a href="https://t.me/PlayStation_Pulse">PlayStation Pulse</a>
+                Base original: <a href="https://t.me/sudoBlackArch">BlackArch</a> // Telegram: <a href="https://t.me/PlayStation_Pulse">PlayStation Pulse</a>
             </footer>
         </main>
     </div>
@@ -209,7 +209,7 @@
         return;
     }
 
-    var LAPSE = { 1100: 1, 1150: 1, 1200: 1, 1202: 1 };
+    var LAPSE = { 1100: 1, 1150: 1, 1152: 1, 1200: 1, 1202: 1 };
     var POOPS = { 1250: 1, 1252: 1, 1300: 1 };
     var bug = LAPSE[fwnum] ? "lapse" : (POOPS[fwnum] ? "poops" : null);
     var forced = queryValue("bug");
@@ -222,7 +222,7 @@
 
     if (!bug) {
         setState("UNSUPPORTED FIRMWARE — execution stopped", "bad");
-        setCache("Supported: 11.00, 11.50, 12.00, 12.02, 12.50, 12.52 and 13.00.");
+        setCache("Supported: 11.00, 11.50, 11.52, 12.00, 12.02, 12.50, 12.52 and 13.00.");
         return;
     }
 
