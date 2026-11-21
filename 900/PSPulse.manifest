@@ -1,7 +1,11 @@
-CACHE MANIFEST 
+CACHE MANIFEST
+# retr0-design-20261121-v1
+# resource-path-fix-20261021-main-v2
+# offline-manifests-v1-20261021
 #VERSION 3.0 - goldhen b18.12 reliability-final support-link-20261003
 
-CACHE: 
+CACHE:
+../retr0.css
 alert.js
 cache.html
 config.js
@@ -13,7 +17,6 @@ payloads.js
 psfree.js
 PSPulse.manifest
 send.js
-version-selector.html
 kpatch/900.elf
 kpatch/9001.elf
 kpatch/900OK.elf
@@ -48,5 +51,7 @@ payloads/WebRTE_900.bin
 rop/900.js
 rop/950.js
 
-NETWORK: 
+../pspulse.png
+
+NETWORK:
 *
