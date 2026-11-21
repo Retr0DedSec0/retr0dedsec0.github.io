@@ -1,0 +1,19 @@
+CACHE MANIFEST
+# retr0-design-20261121-v1
+# version-label-audit-20261021-v3
+# navigation-v1-20261021: menu only; host caches install separately
+
+CACHE:
+retr0.css
+firmware.js
+menu.js
+version.js
+./
+index.html
+pspulse.png
+700/version-selector.html
+900/version-selector.html
+css/version-selector.html
+
+NETWORK:
+*
